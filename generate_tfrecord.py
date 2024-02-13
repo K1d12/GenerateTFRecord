@@ -84,11 +84,11 @@ def xml_to_csv(path):
             value = (root.find('filename').text,
                      int(root.find('size')[0].text),
                      int(root.find('size')[1].text),
-                     member[0].text,
-                     int(member[4][0].text),
-                     int(member[4][1].text),
-                     int(member[4][2].text),
-                     int(member[4][3].text)
+                      member.find('name').text,  # Modify this line to fix the issue
+                      int(member.find('bndbox/xmin').text),  # Update these lines accordingly
+                      int(member.find('bndbox/ymin').text),
+                      int(member.find('bndbox/xmax').text),
+                      int(member.find('bndbox/ymax').text)
                      )
             xml_list.append(value)
     column_name = ['filename', 'width', 'height',
